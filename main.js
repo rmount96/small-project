@@ -22,24 +22,45 @@ const ajax = (url, callback, method='GET')=>{
     request.send()
 }
 
+const formHandler = (evt)=>{
+    evt.preventDefault() // prevents page from reloading
+    return [...evt.target.elements]
+    .filter(el=>el.name)
+    .map(el=>({name:el.name, value:el.value}))
+}
 
-ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
-    let quotes = JSON.parse(r)
-    let ul = document.querySelector('ul')
-    console.log(quotes)
-    let li = document.createElement('li')
-    ul.append(li)
-    li.append(`${quotes.quote.quoteText} -${quotes.quote.quoteAuthor}`)
-    })
 
-button = document.querySelector('#another-quote')
-
-// button.addEventListener("click", ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
-    
+// ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
 //     let quotes = JSON.parse(r)
 //     let ul = document.querySelector('ul')
 //     console.log(quotes)
 //     let li = document.createElement('li')
 //     ul.append(li)
 //     li.append(`${quotes.quote.quoteText} -${quotes.quote.quoteAuthor}`)
-//     }))
+//     })
+
+
+    
+ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
+    let quotes = JSON.parse(r)
+    console.log(quotes)
+    let p = document.querySelector('p')
+    p.append(`"${quotes.quote.quoteText}"`)
+    let title = document.querySelector('h5')
+    //if(quotes.quote.quoteGenre != null) {
+    title.append(`Quote Genre: ${quotes.quote.quoteGenre}`)
+    //}
+    let author = document.querySelector('h6')
+    author.append(`-${quotes.quote.quoteAuthor}`)
+})
+
+
+ajax('https://quote-garden.herokuapp.com/api/v2/genres', (resp) => {
+    let listed = JSON.parse(resp)
+    console.log(listed)
+    listed.genres.forEach(genre => {
+    let options = document.createElement('option')
+    options.append(genre)
+    document.querySelector('#quote-categories').append(options)
+    })
+})

@@ -1,0 +1,45 @@
+body {
+    background-image: url(./image/_MG_6925\(resized\).jpg)
+}
+
+#button-center {
+    display:flex;
+    justify-content:center;
+    padding-top: 75px
+}
+#card-center {
+    display:flex;
+    justify-content:center;
+    /* min-height:100vh; */
+    opacity:65%;
+    padding-top: 4%;
+    margin: 0
+}
+
+card {
+    background-color: #ffffff;
+    opacity: 10%
+}
+
+p {
+    font-style: italic;
+    text-align: center;
+}
+
+h5{
+    text-transform: capitalize;
+    text-align: center;
+}
+
+#card-author {
+    text-align: end;
+}
+
+#another-quote {
+    text-align: center;
+}
+
+#drop-down {
+    padding-top:2%;
+    text-align:center
+}
