@@ -29,38 +29,54 @@ const formHandler = (evt)=>{
     .map(el=>({name:el.name, value:el.value}))
 }
 
-
-// ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
-//     let quotes = JSON.parse(r)
-//     let ul = document.querySelector('ul')
-//     console.log(quotes)
-//     let li = document.createElement('li')
-//     ul.append(li)
-//     li.append(`${quotes.quote.quoteText} -${quotes.quote.quoteAuthor}`)
-//     })
-
-
+const mainContent = document.querySelector('.card-center')
     
-ajax("https://quote-garden.herokuapp.com/api/v2/quotes/random", (r) =>{
-    let quotes = JSON.parse(r)
-    console.log(quotes)
-    let p = document.querySelector('p')
-    p.append(`"${quotes.quote.quoteText}"`)
-    let title = document.querySelector('h5')
-    //if(quotes.quote.quoteGenre != null) {
-    title.append(`Quote Genre: ${quotes.quote.quoteGenre}`)
-    //}
-    let author = document.querySelector('h6')
-    author.append(`-${quotes.quote.quoteAuthor}`)
-})
+ajax("https://quote-garden.herokuapp.com/api/v2/quotes?page=1&limit=20", (r) =>{
+    let allQuotes = JSON.parse(r)
+    console.log(allQuotes)
+
+    let newQuote = () => {
+        if(allQuotes.length != 0) {
+            let selectedQuote = allQuotes.quotes.pop();
+            let div = document.createElement('div')
+            div.className = "card"
+            div.style.width = '18rem'
+            mainContent.append(div)
+
+            let p = document.createElement('p')
+            p.append(`"${selectedQuote.quoteText}"`)
+            div.append(p)
+            let author = document.createElement('h6')
+            author.setAttribute("id", "card-author")
+            if (selectedQuote.quoteAuthor != false){
+            author.append(`-${selectedQuote.quoteAuthor}`)
+            div.append(author)
+            }
+            else {
+                author.append("-Unknown")
+                div.append(author)
+            }
+
+        }
+
+}
+let button = document.querySelector('button')
+button.addEventListener('click', newQuote)
+
+button.onclick = () => {
+    let div = document.createElement('div')
+    div.setAttribute("id", "transition")
+}})
 
 
-ajax('https://quote-garden.herokuapp.com/api/v2/genres', (resp) => {
-    let listed = JSON.parse(resp)
-    console.log(listed)
-    listed.genres.forEach(genre => {
-    let options = document.createElement('option')
-    options.append(genre)
-    document.querySelector('#quote-categories').append(options)
-    })
-})
+
+// ajax('https://quote-garden.herokuapp.com/api/v2/genres', (resp) => {
+//     let listed = JSON.parse(resp)
+//     console.log(listed)
+//     listed.genres.forEach(genre => {
+//     let options = document.createElement('option')
+//     options.append(genre)
+//     document.querySelector('#quote-categories').append(options)
+//     })
+// })
+

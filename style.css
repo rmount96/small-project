@@ -1,5 +1,6 @@
 body {
-    background-image: url(./image/_MG_6925\(resized\).jpg)
+    background-image: url(./image/_MG_6925\(resized\).jpg);
+    
 }
 
 #button-center {
@@ -7,31 +8,44 @@ body {
     justify-content:center;
     padding-top: 75px
 }
-#card-center {
+
+.card-center {
     display:flex;
+    position: relative;
+    flex-wrap: wrap;
     justify-content:center;
-    /* min-height:100vh; */
-    opacity:65%;
     padding-top: 4%;
-    margin: 0
+    /* height: auto; */
+    border: 0 150px 15px 150px;
 }
 
-card {
-    background-color: #ffffff;
-    opacity: 10%
+.card {
+    margin: 5px;
+    opacity: 65%;
+    transition: 0.5s ease;
+    display:flex;
+    justify-content: space-between;
 }
+
+.card:hover {
+    background-color: white;
+    opacity: 90%;
+}
+
 
 p {
     font-style: italic;
     text-align: center;
-}
-
-h5{
-    text-transform: capitalize;
-    text-align: center;
+    position: relative;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    color: black
 }
 
 #card-author {
+    position: relative;
+    padding-top: 15px;
+    padding-right: 15px;
     text-align: end;
 }
 
