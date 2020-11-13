@@ -1,6 +1,5 @@
 body {
     background-image: url(./image/_MG_6925\(resized\).jpg);
-    
 }
 
 #button-center {
@@ -13,10 +12,9 @@ body {
     display:flex;
     position: relative;
     flex-wrap: wrap;
+    flex: 1;
     justify-content:center;
     padding-top: 4%;
-    /* height: auto; */
-    border: 0 150px 15px 150px;
 }
 
 .card {
@@ -25,6 +23,7 @@ body {
     transition: 0.5s ease;
     display:flex;
     justify-content: space-between;
+    animation: fadeIn ease 1s;
 }
 
 .card:hover {
@@ -56,4 +55,26 @@ p {
 #drop-down {
     padding-top:2%;
     text-align:center
+}
+
+@keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:65%;
+    }
+}
+
+.close-btn {
+    text-align: right;
+    padding-right:9px;
+    cursor: pointer;
+    margin-left: 90%;
+    border-radius: .25rem;
+}
+
+.close-btn:hover {
+    background-color: rgb(175, 151, 120);
+    opacity: 65%;
 }
